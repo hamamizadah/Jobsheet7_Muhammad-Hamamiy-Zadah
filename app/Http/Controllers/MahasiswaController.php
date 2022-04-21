@@ -76,4 +76,16 @@ class MahasiswaController extends Controller{
         return redirect()->route('mahasiswa.index')
         -> with('success', 'Mahasiswa Berhasil Dihapus');
     }
-};
+    public function search(Request $request){
+		$search = $request->search;
+		$mahasiswa = DB::table('mahasiswa')
+		->where('nim','like',"%".$search."%")
+        ->orWhere('nama','like', "%".$search."%") 
+        ->orWhere('kelas','like', "%".$search."%")
+        ->orWhere('jurusan','like', "%".$search."%")
+        ->orWhere('email','like', "%".$search."%")
+        ->orWhere('alamat','like', "%".$search."%")
+        ->orWhere('tanggallahir','like', "%".$search."%")->paginate(3);
+        return view('mahasiswa.index', compact('mahasiswa'))->with('i', (request()->input('page', 1) - 1) * 5);	
+    }
+};  

@@ -10,6 +10,12 @@
         <div class="float-right my-2">
             <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
         </div>
+        <div class="form-group">
+        <form action="{{ route('search') }}" method="GET">
+            <input type="text" name="search" placeholder="Search..." value="{{ old('search') }}">
+            <input type="submit" value="Search...">
+        </form>
+    </div>
     </div>
     </div>
  </div>
@@ -19,7 +25,7 @@
         <p>{{ $message }}</p>
     </div>
     
-	
+    </form>	
  @endif
  
  <table class="table table-bordered">
