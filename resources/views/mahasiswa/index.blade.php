@@ -58,4 +58,5 @@
     
     @endforeach
  </table>
+ {{ $mahasiswa->links() }}
 @endsection
