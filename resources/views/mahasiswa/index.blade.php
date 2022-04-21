@@ -26,8 +26,11 @@
         <tr>
             <th>Nim</th>
             <th>Nama</th>
+            <th>Email</th>
             <th>Kelas</th>
             <th>Jurusan</th>
+            <th>Alamat</th>
+            <th>Tanggal Lahir</th>
             <th width="280px">Action</th>
         </tr>
     @foreach ($mahasiswa as $mhs)
@@ -35,8 +38,11 @@
     
         <td>{{ $mhs ->nim }}</td>
         <td>{{ $mhs ->nama }}</td>
+        <td>{{ $mhs ->email }}</td>
         <td>{{ $mhs ->kelas }}</td>
         <td>{{ $mhs ->jurusan }}</td>
+        <td>{{ $mhs ->alamat }}</td>
+        <td>{{ $mhs ->tanggallahir }}</td>
         
         <td>
             <form action="{{ route('mahasiswa.destroy',['mahasiswa'=>$mhs->nim]) }}" method="POST">
