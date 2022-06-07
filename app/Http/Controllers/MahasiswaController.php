@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\Matakuliah;
+use App\Models\Mahasiswa_Matakuliah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Kelas;
@@ -126,5 +128,13 @@ class MahasiswaController extends Controller{
         ->orWhere('alamat','like', "%".$search."%")
         ->orWhere('tanggallahir','like', "%".$search."%")->paginate(3);
         return view('mahasiswa.index', compact('mahasiswa'))->with('i', (request()->input('page', 1) - 1) * 5);	
+    }
+
+    public function nilai($id){
+        $Mahasiswa = Mahasiswa::with('kelas')
+            ->where('id_mahasiswa' , $id)->first();
+        $matkul = Mahasiswa_Matakuliah::with('matakuliah')
+            ->where('mahasiswa_id', $id)->get();
+        return view('mahasiswa.nilai', compact('Mahasiswa', 'matkul'));
     }
 };  
